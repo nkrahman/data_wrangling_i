@@ -1,0 +1,83 @@
+---
+title: "template"
+output: html_document
+date: "2023-09-19"
+---
+
+```{r}
+library(tidyverse)
+```
+
+Let's import the `FAS_litters.csv` csv using a relative path. 
+
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv")
+
+litters_df =
+  janitor::clean_names(litters_df)
+```
+
+Import the same dataset using an absolute path. 
+
+```{r}
+litters_df_abs = 
+  read_csv("~/Documents/Columbia/Semester 3/DataScience/data_wrangling_i/data/FAS_litters.csv")
+
+litters_df_abs =
+  janitor::clean_names(litters_df_abs)
+```
+
+```{r}
+pups_df =
+  read_csv("data/FAS_pups.csv")
+
+pups_df =
+  janitor::clean_names(pups_df)
+```
+
+## Look at data
+
+```{r}
+litters_df
+
+head(litters_df)
+
+tail(litters_df)
+```
+
+You can use `view` 
+
+```{r, eval=FALSE}
+view(litters_df)
+```
+
+Look at a data summary
+```{r}
+str(litters_df)
+
+skimr::skim(litters_df)
+```
+
+Look at NA values. 
+
+```{r}
+litters_df =
+  read_csv("data/FAS_litters.csv",
+           na = c("NA", 19, "."))
+```
+
+Column types
+
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv",
+           col_types = 
+             cols(
+               `GD0 weight` = col_character()
+             ))
+
+
+```
+
+
